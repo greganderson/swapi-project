@@ -6,11 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWAPI Project</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
 </head>
 
 <body>
-    <button id="fetch-btn" type="button">Fetch Star Wars Info</button>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Star Wars Fetch</h1>
+        </div>
+        <div class="button">
+            <button id="fetch-btn">Fetch Characters</button>
+        </div>
+        <div id="output" class="output-box">
+            <!-- Fetched data will be displayed here -->
+        </div>
+    </div>
+
+
+
     <script src="javascript/main.js"></script>
+    <script src="javascript/cursor.js"></script>
 </body>
 
 </html>

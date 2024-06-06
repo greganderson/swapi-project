@@ -1,5 +1,49 @@
+:root {
+  --saber-color: rgba(255, 0, 0, .8);
+  --saber-color-gradient: rgba(255, 0, 0, .7);
+  --saber-box-shadow: rgba(255, 0, 0, .5);
+}
+
 body {
-  background-color: #1f1f1f;
-  color: #e7e7e7;
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  /* Background color for the night sky */
+  overflow: hidden;
+  color: #fff;
+  /* Text color for better contrast */
+}
+
+#custom-cursor {
+  position: absolute;
+  width: 10px;
+  height: 40px;
+  background-color: #ffffff33;
+  border-radius: 0 0 5px 5px;
+  border: 2px solid #888686;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  pointer-events: none;
+  /* Prevents cursor from interfering with other elements */
+  transform-origin: 50% 50%;
+  /* Ensure rotation happens around the center */
+}
+
+#blade {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 0;
+  /* Start with height 0 */
+  background: linear-gradient(to bottom, var(--saber-color), var(--saber-color-gradient));
+  box-shadow: 0 0 20px 10px var(--saber-box-shadow);
+  border-radius: 5px 5px 0 0;
+  transition: height 0.2s ease-in-out;
 }
