@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let rotationAngleX = 0;
   let rotationAngleY = 0;
   let rotationAngleZ = 0;
+  let saberActivated = false;
 
   const cursorOffsetX = -7;
   const cursorOffsetY = -20;
@@ -23,23 +24,33 @@ document.addEventListener("DOMContentLoaded", () => {
     customCursor.style.top = `${e.clientY + cursorOffsetY}px`;
   });
 
-  // Handle mouse down event to extend the lightsaber blade
-  document.addEventListener("mousedown", () => {
-    blade.style.height = "100px"; // Extend blade
-  });
+  // // Handle mouse down event to extend the lightsaber blade
+  // document.addEventListener("mousedown", () => {
+  //   blade.style.height = "100px"; // Extend blade
+  // });
 
-  // Handle mouse up event to retract the lightsaber blade
-  document.addEventListener("mouseup", () => {
-    blade.style.height = "0"; // Retract blade
-  });
+  // // Handle mouse up event to retract the lightsaber blade
+  // document.addEventListener("mouseup", () => {
+  //   blade.style.height = "0"; // Retract blade
+  // });
 
   // Handle key down event to start/stop rotation
   document.addEventListener("keydown", (e) => {
-    if (e.key === "r") {
-      isRotating = !isRotating;
-      if (isRotating) {
-        requestAnimationFrame(rotateCursor);
-      }
+    switch (e.key) {
+      case "r":
+        isRotating = !isRotating;
+        if (isRotating) {
+          requestAnimationFrame(rotateCursor);
+        }
+        break;
+      case "s":
+        if (!saberActivated) {
+          blade.style.height = "100px"; // Extend blade
+        } else {
+          blade.style.height = "0"; // Retract blade
+        }
+        saberActivated = !saberActivated;
+        break;
     }
   });
 
