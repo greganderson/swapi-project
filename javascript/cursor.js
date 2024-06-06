@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   blade.id = "blade";
   customCursor.appendChild(blade);
 
-  let rotationSpeed = 4; // Default rotation speed (degrees per frame)
+  let rotationSpeed = 2; // Default rotation speed (degrees per frame)
   let isRotating = false;
   let rotationAngleX = 0;
   let rotationAngleY = 0;
   let rotationAngleZ = 0;
-  let saberActivated = false;
+  let lightSaberActivated = false;
 
   const cursorOffsetX = -7;
   const cursorOffsetY = -20;
@@ -24,15 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     customCursor.style.top = `${e.clientY + cursorOffsetY}px`;
   });
 
-  // // Handle mouse down event to extend the lightsaber blade
-  // document.addEventListener("mousedown", () => {
-  //   blade.style.height = "100px"; // Extend blade
-  // });
-
-  // // Handle mouse up event to retract the lightsaber blade
-  // document.addEventListener("mouseup", () => {
-  //   blade.style.height = "0"; // Retract blade
-  // });
+  document.addEventListener("mousedown", () => {
+    if (lightSaberActivated) {
+      document.getElementById("lightSaberClick").play();
+    }
+  })
 
   // Handle key down event to start/stop rotation
   document.addEventListener("keydown", (e) => {
@@ -44,12 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         break;
       case "s":
-        if (!saberActivated) {
-          blade.style.height = "100px"; // Extend blade
-        } else {
-          blade.style.height = "0"; // Retract blade
-        }
-        saberActivated = !saberActivated;
+        toggleLightSaber(lightSaberActivated);
+        lightSaberActivated = !lightSaberActivated;
         break;
     }
   });
@@ -62,6 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
       rotationAngleZ = (rotationAngleZ + rotationSpeed) % 360;
       customCursor.style.transform = `rotateX(${rotationAngleX}deg) rotateY(${rotationAngleY}deg) rotateZ(${rotationAngleZ}deg)`;
       requestAnimationFrame(rotateCursor);
+    }
+  };
+
+  const toggleLightSaber = (activated) => {
+    if (!activated) {
+      blade.style.height = "100px"; // Extend blade
+      document.getElementById("lightSaberActivate").play();
+    } else {
+      blade.style.height = "0"; // Retract blade
+      document.getElementById("lightSaberDeactivate").play();
     }
   };
 });
