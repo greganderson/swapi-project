@@ -12,26 +12,27 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #000;
-  /* Background color for the night sky */
-  overflow: hidden;
-  color: #fff;
-  /* Text color for better contrast */
+  /* Hide the default cursor */
+  cursor: none;
+}
+
+button {
+  cursor: none;
 }
 
 #custom-cursor {
   position: absolute;
   width: 10px;
   height: 40px;
-  background-color: #ffffff33;
+  background-color: #1f1f1fdd;
   border-radius: 0 0 5px 5px;
   border: 2px solid #888686;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  pointer-events: none;
   /* Prevents cursor from interfering with other elements */
-  transform-origin: 50% 50%;
+  pointer-events: none;
   /* Ensure rotation happens around the center */
+  transform-origin: 50% 50%;
 }
 
 #blade {
@@ -40,10 +41,21 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 10px;
-  height: 0;
   /* Start with height 0 */
+  height: 0;
   background: linear-gradient(to bottom, var(--saber-color), var(--saber-color-gradient));
   box-shadow: 0 0 20px 10px var(--saber-box-shadow);
   border-radius: 5px 5px 0 0;
   transition: height 0.2s ease-in-out;
+}
+
+#output {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  align-items: center;
+  width: 100%;
+  /* Height to enable scrolling */
+  height: 60vh;
+  /* Enable vertical scrolling */
+  overflow-y: auto;
 }

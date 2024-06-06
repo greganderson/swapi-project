@@ -1,15 +1,30 @@
 "use strict";
 
 document.getElementById("fetch-btn").addEventListener("click", async () => {
-  const swapiData = await getSwapiData();
+  const swapiData = await getAllSwapiCharacters();
   console.log(swapiData);
   displayCharacters(swapiData);
 });
 
-const getSwapiData = async () => {
+const getSwapiCharacters = async () => {
   const response = await fetch("https://swapi.dev/api/people/");
   const data = await response.json();
   return data.results;
+};
+
+const getAllSwapiCharacters = async () => {
+  let allCharacters = [];
+  let nextPage = "https://swapi.dev/api/people/";
+
+  // Fetch all pages until there are no more pages left
+  while (nextPage) {
+    const response = await fetch(nextPage);
+    const data = await response.json();
+    allCharacters = [...allCharacters, ...data.results];
+    nextPage = data.next; // The URL of the next page, or null if no more pages
+  }
+
+  return allCharacters;
 };
 
 const displayCharacters = (characters) => {
