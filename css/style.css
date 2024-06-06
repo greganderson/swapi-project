@@ -55,12 +55,44 @@ button {
 }
 
 #output {
+  /* Set text color to yellow */
+  color: yellow;
+  /* Use a Star Wars-like font */
+  font-family: "Star Jedi", sans-serif;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   align-items: center;
-  width: 100%;
   /* Height to enable scrolling */
+  width: 100%;
   height: 60vh;
   /* Enable vertical scrolling */
   overflow-y: auto;
+  /* Add some padding for better readability */
+  padding: 20px;
+}
+
+/* Create a scrolling effect */
+@keyframes crawl {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(calc(-100% + 60vh));
+  }
+}
+
+/* Apply the scrolling effect to the output */
+#output::before {
+  /* Required for pseudo elements */
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ensure it's behind the text */
+  z-index: -1;
+  /* Adjust speed as needed */
+  animation: crawl 120s linear infinite;
 }
