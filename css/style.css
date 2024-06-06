@@ -1,7 +1,12 @@
 :root {
-  --saber-color: rgba(255, 0, 0, .8);
-  --saber-color-gradient: rgba(255, 0, 0, .7);
-  --saber-box-shadow: rgba(255, 0, 0, .5);
+  /* rgb for the actual saber color */
+  --saber-r: 0;
+  --saber-g: 0;
+  --saber-b: 255;
+
+  --saber-color: rgba(var(--saber-r), var(--saber-g), var(--saber-b), 1);
+  --saber-color-gradient: rgba(var(--saber-r), var(--saber-g), var(--saber-b), .7);
+  --saber-box-shadow: rgba(var(--saber-r), var(--saber-g), var(--saber-b), .5);
 }
 
 body {

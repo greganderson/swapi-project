@@ -1,6 +1,9 @@
 "use strict";
 
 document.getElementById("fetch-btn").addEventListener("click", async () => {
+  const audio = document.getElementById('audio');
+  audio.play();
+
   const swapiData = await getAllSwapiCharacters();
   console.log(swapiData);
   displayCharacters(swapiData);
