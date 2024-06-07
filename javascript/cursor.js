@@ -8,12 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   blade.id = "blade";
   customCursor.appendChild(blade);
 
+  // For rotation animation
   let rotationSpeed = 2; // Default rotation speed (degrees per frame)
   let isRotating = false;
   let rotationAngleX = 0;
   let rotationAngleY = 0;
   let rotationAngleZ = 0;
-  let lightSaberActivated = false;
+
+  let active = false;
 
   const cursorOffsetX = -7;
   const cursorOffsetY = -20;
@@ -25,23 +27,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("mousedown", () => {
-    if (lightSaberActivated) {
+    if (active) {
       document.getElementById("lightSaberClick").play();
     }
-  })
+
+    customCursor.style.transform = `rotateZ(90deg)`;
+    requestAnimationFrame(rotateCursor);
+  });
+
+  document.addEventListener("mouseup", () => {
+    customCursor.style.transform = `rotateZ(0deg)`;
+    requestAnimationFrame(rotateCursor);
+  });
 
   // Handle key down event to start/stop rotation
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
       case "r":
-        isRotating = !isRotating;
-        if (isRotating) {
-          requestAnimationFrame(rotateCursor);
+        if (active) {
+          isRotating = !isRotating;
+          if (isRotating) {
+            requestAnimationFrame(rotateCursor);
+          }
         }
         break;
       case "s":
-        toggleLightSaber(lightSaberActivated);
-        lightSaberActivated = !lightSaberActivated;
+        toggleLightSaber();
         break;
     }
   });
@@ -57,13 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const toggleLightSaber = (activated) => {
-    if (!activated) {
+  const toggleLightSaber = () => {
+    if (!active) {
       blade.style.height = "100px"; // Extend blade
       document.getElementById("lightSaberActivate").play();
     } else {
       blade.style.height = "0"; // Retract blade
       document.getElementById("lightSaberDeactivate").play();
     }
+    active = !active;
   };
 });
