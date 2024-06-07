@@ -96,3 +96,14 @@ button {
   /* Adjust speed as needed */
   animation: crawl 120s linear infinite;
 }
+
+.no-select {
+  /* Standard syntax */
+  user-select: none;
+  /* Safari */
+  -webkit-user-select: none;
+  /* Firefox */
+  -moz-user-select: none;
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
+}
