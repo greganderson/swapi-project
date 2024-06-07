@@ -1,0 +1,37 @@
+.attacking-tie-fighter {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.attacking-tie-fighter .tie-fighter-body {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5) inset;
+}
+
+.attacking-tie-fighter .left-wing,
+.attacking-tie-fighter .right-wing {
+  width: 20px;
+  height: 40px;
+  background-color: #000;
+  border: 2px solid #fff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.attacking-tie-fighter .left-wing {
+  left: -20px;
+}
+
+.attacking-tie-fighter .right-wing {
+  right: -20px;
+}
